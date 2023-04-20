@@ -8,7 +8,59 @@
     <title>Library</title>
   </head>
   <body>
-    <div class="books-grid"></div>
+    <header class="header container">
+      <h1>library</h1>
+    </header>
+    <main class="main container">
+      <button class="btn new-book">New Book</button>
+      <div class="books-grid"></div>
+    </main>
+    <div class="form">
+      <form class="new-book-form">
+        <h3>Create new book</h3>
+        <input
+          class="input"
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Title"
+          required
+          maxlength="100"
+        />
+        <input
+          class="input"
+          type="text"
+          name="author"
+          id="author"
+          placeholder="Author"
+          required
+          maxlength="100"
+        />
+        <input
+          class="input"
+          type="number"
+          name="pages"
+          id="pages"
+          placeholder="Pages"
+          required
+          min="1"
+          max="10000"
+        />
+        <div class="is-read">
+          <label for="is-read">Read</label>
+          <input
+            class="checkbox"
+            type="checkbox"
+            name="read"
+            id="isRead"
+            class="read"
+            value="read"
+          />
+        </div>
+        <button class="btn light-green" type="submit">Submit</button>
+      </form>
+    </div>
+    <div class="overlay"></div>
     <script src="script.js"></script>
   </body>
 </html>

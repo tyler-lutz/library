@@ -11,6 +11,22 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
+function getBookFromForm() {
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const pages = document.getElementById("pages").value;
+  const isRead = document.getElementById("isRead").checked;
+  return new Book(title, author, pages, isRead);
+}
+
+function addBook(e) {
+  e.preventDefault();
+  const newBook = getBookFromForm();
+  addBookToLibrary(newBook);
+  updateBooksGrid();
+  closeNewBookForm();
+}
+
 function removeBook(e) {
   const bookCard = e.target.parentElement;
   const bookTitle = bookCard.querySelector(".book-title").textContent;
@@ -34,7 +50,25 @@ addBookToLibrary(book2);
 addBookToLibrary(book3);
 addBookToLibrary(book4);
 
+const newBookBtn = document.querySelector(".new-book");
 const booksGrid = document.querySelector(".books-grid");
+const form = document.querySelector(".form");
+const newBookForm = document.querySelector(".new-book-form");
+const overlay = document.querySelector(".overlay");
+
+newBookBtn.addEventListener("click", openNewBookForm);
+newBookForm.addEventListener("submit", addBook);
+
+function openNewBookForm() {
+  newBookForm.reset();
+  form.classList.add("active");
+  overlay.classList.add("active");
+}
+
+function closeNewBookForm() {
+  form.classList.remove("active");
+  overlay.classList.remove("active");
+}
 
 function toggleRead(e) {
   const bookCard = e.target.parentElement;
@@ -59,8 +93,8 @@ function createBookCard(book) {
   bookCard.classList.add("book-card");
   bookTitle.classList.add("book-title");
   bookAuthor.classList.add("book-author");
-  readBtn.classList.add("read-btn");
-  removeBtn.classList.add("remove-btn");
+  readBtn.classList.add("btn");
+  removeBtn.classList.add("btn");
   readBtn.onclick = toggleRead;
   removeBtn.onclick = removeBook;
 
@@ -71,10 +105,10 @@ function createBookCard(book) {
 
   if (book.isRead) {
     readBtn.textContent = "Read";
-    readBtn.classList.add("read");
+    readBtn.classList.add("light-green");
   } else {
     readBtn.textContent = "Not Read";
-    readBtn.classList.add("not-read");
+    readBtn.classList.add("red");
   }
 
   bookCard.appendChild(bookTitle);

@@ -5,15 +5,37 @@
   font-family: sans-serif;
 }
 
-button {
+button,
+input {
   cursor: pointer;
   border: none;
+}
+
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.main {
+  text-align: center;
+}
+
+.btn {
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.new-book {
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .books-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 10px;
+  margin-top: 40px;
 }
 
 .book-card {
@@ -27,18 +49,67 @@ button {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
 }
 
-.read-btn,
-.remove-btn {
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.read {
+.light-green {
   background-color: #3a993d;
   color: #fff;
 }
 
-.not-read {
+.red {
   background-color: #e74c3c;
   color: #fff;
+}
+
+.form {
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  text-align: center;
+  background-color: #eeeeee;
+  padding: 40px;
+  border-radius: 15px;
+  transition: 0.3s ease-in-out;
+}
+
+.new-book-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.is-read {
+  display: flex;
+  gap: 10px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: white;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.form.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.overlay.active {
+  display: block;
 }
