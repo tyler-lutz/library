@@ -11,6 +11,14 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
+function removeBook(e) {
+  const bookCard = e.target.parentElement;
+  const bookTitle = bookCard.querySelector(".book-title").textContent;
+  const bookIndex = myLibrary.findIndex((book) => book.title === bookTitle);
+  myLibrary.splice(bookIndex, 1);
+  updateBooksGrid();
+}
+
 const book1 = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
 const book2 = new Book(
   "The Fellowship of the Ring",
@@ -46,16 +54,20 @@ function createBookCard(book) {
   const bookAuthor = document.createElement("p");
   const bookPages = document.createElement("p");
   const readBtn = document.createElement("button");
+  const removeBtn = document.createElement("button");
 
   bookCard.classList.add("book-card");
   bookTitle.classList.add("book-title");
   bookAuthor.classList.add("book-author");
   readBtn.classList.add("read-btn");
+  removeBtn.classList.add("remove-btn");
   readBtn.onclick = toggleRead;
+  removeBtn.onclick = removeBook;
 
   bookTitle.textContent = book.title;
   bookAuthor.textContent = book.author;
   bookPages.textContent = book.pages;
+  removeBtn.textContent = "Remove";
 
   if (book.isRead) {
     readBtn.textContent = "Read";
@@ -69,6 +81,7 @@ function createBookCard(book) {
   bookCard.appendChild(bookAuthor);
   bookCard.appendChild(bookPages);
   bookCard.appendChild(readBtn);
+  bookCard.appendChild(removeBtn);
 
   booksGrid.appendChild(bookCard);
 }
