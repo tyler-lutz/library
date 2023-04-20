@@ -5,6 +5,11 @@
   font-family: sans-serif;
 }
 
+button {
+  cursor: pointer;
+  border: none;
+}
+
 .books-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -20,4 +25,19 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
+}
+
+.read-btn {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.read {
+  background-color: #3a993d;
+  color: #fff;
+}
+
+.not-read {
+  background-color: #e74c3c;
+  color: #fff;
 }

@@ -11,7 +11,7 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
-const book1 = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
+const book1 = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
 const book2 = new Book(
   "The Fellowship of the Ring",
   "J.R.R. Tolkien",
@@ -28,6 +28,14 @@ addBookToLibrary(book4);
 
 const booksGrid = document.querySelector(".books-grid");
 
+function toggleRead(e) {
+  const bookCard = e.target.parentElement;
+  const bookTitle = bookCard.querySelector(".book-title").textContent;
+  const book = myLibrary.find((book) => book.title === bookTitle);
+  book.isRead = !book.isRead;
+  updateBooksGrid();
+}
+
 function resetBooksGrid() {
   booksGrid.innerHTML = "";
 }
@@ -43,6 +51,7 @@ function createBookCard(book) {
   bookTitle.classList.add("book-title");
   bookAuthor.classList.add("book-author");
   readBtn.classList.add("read-btn");
+  readBtn.onclick = toggleRead;
 
   bookTitle.textContent = book.title;
   bookAuthor.textContent = book.author;
@@ -59,6 +68,7 @@ function createBookCard(book) {
   bookCard.appendChild(bookTitle);
   bookCard.appendChild(bookAuthor);
   bookCard.appendChild(bookPages);
+  bookCard.appendChild(readBtn);
 
   booksGrid.appendChild(bookCard);
 }
